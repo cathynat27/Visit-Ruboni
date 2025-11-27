@@ -60,11 +60,13 @@ export default function AccommodationPage() {
   return (
     <section className="py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="mb-4 text-4xl font-bold">All Accommodations</h1>
-        <p className="mb-8 text-muted-foreground">
+       <div className="pb-6">
+        <h1 className="mb-4 text-4xl text-center font-bold">All Accommodations</h1>
+        <p className="mb-8 text-muted-foreground text-center">
           Explore our complete selection of rooms and suites nestled in the beauty of Ruboni
         </p>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        </div>
+        <div className="grid gap-6 pt-4 md:grid-cols-2 lg:grid-cols-4">
           {items.map((it) => (
             <Card key={it.title} {...it} />
           ))}

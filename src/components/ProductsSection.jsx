@@ -55,10 +55,11 @@ function Card({ id, image, title, description, rating, price }) {
         </div>
         <Stars value={rating} />
         <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
-        <div className="mt-auto flex gap-2">
+        <div className="mt-auto flex flex-col w-full gap-2 ">
+         
           <Button
             variant="outline"
-            className="flex-1"
+            className="bg-primary hover:opacity-90 hover:bg-sky-600 text-white"
             onClick={(e) => {
               e.stopPropagation()
               handleViewDetails()
@@ -66,14 +67,19 @@ function Card({ id, image, title, description, rating, price }) {
           >
             View details
           </Button>
+         
+          
           <Button
-            size="icon"
-            className="bg-primary hover:opacity-90"
+          variant="outline"
+            // className="flex-1"
+            // size="icon"
+            className="bg-primary hover:opacity-90 hover:bg-sky-600 text-white" 
             onClick={handleAddToCart}
           >
-        
-            <ShoppingCart className="h-4 w-4" />
+        Add Cart
+            {/* <ShoppingCart className="h-4 w-4" /> */}
           </Button>
+          
         </div>
       </div>
     </div>

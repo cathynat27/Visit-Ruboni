@@ -60,7 +60,7 @@ function SeeAllCard() {
       <div className="flex w-72 shrink-0 flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-sm h-full cursor-pointer hover:shadow-md transition-shadow">
         <div className="flex flex-1 flex-col gap-4 p-6 items-center justify-center">
           <div className="text-center">
-            <h3 className="text-lg font-semibold mb-2">View All Accommodations</h3>
+            <h3 className="text-lg  font-semibold mb-2">View All Accommodations</h3>
             <p className="text-sm text-muted-foreground mb-4">
               Explore our complete selection of rooms and suites
             </p>

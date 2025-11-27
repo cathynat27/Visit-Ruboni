@@ -24,7 +24,7 @@ export default function Footer() {
               <Link to="/about" className="hover:text-foreground">About us</Link>
             </li>
             <li>
-              <Link to="/contact" className="hover:text-foreground">Contact</Link>
+              <Link to="/contact-us" className="hover:text-foreground">Contact</Link>
             </li>
           </ul>
         </div>

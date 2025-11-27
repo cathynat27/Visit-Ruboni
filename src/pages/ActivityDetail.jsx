@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import { accommodationItems } from "@/data/accommodations"
 import { Button } from "@/components/ui/button"
-import { Star, ChevronLeft, ChevronRight, MapPin, DollarSign,Check } from "lucide-react"
+import { Star, ChevronLeft, ChevronRight,Sparkle, MapPin, Clock, Zap,Check, DollarSign } from "lucide-react"
+import { activityItems } from "@/data/activities"
 
-function StarRating({ value }) {
+function Stars({ value }) {
   const full = Math.floor(value)
   const half = value - full >= 0.5
   const empty = 5 - full - (half ? 1 : 0)
@@ -21,28 +21,29 @@ function StarRating({ value }) {
   )
 }
 
-export default function AccommodationDetail() {
+export default function ActivityDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const accommodation = accommodationItems.find((item) => item.id === parseInt(id))
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [activeTab, setActiveTab] = useState("overview")
 
-  if (!accommodation) {
+  const activity = activityItems.find((item) => item.id === parseInt(id))
+
+  if (!activity) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <h1 className="text-2xl font-bold mb-4">Accommodation not found</h1>
-        <Button onClick={() => navigate("/accommodation")}>Back to Accommodations</Button>
+        <h1 className="text-2xl font-bold mb-4">Activity not found</h1>
+        <Button onClick={() => navigate("/activities")}>Back to Activities</Button>
       </div>
     )
   }
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % accommodation.gallery.length)
+    setCurrentImageIndex((prev) => (prev + 1) % activity.gallery.length)
   }
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + accommodation.gallery.length) % accommodation.gallery.length)
+    setCurrentImageIndex((prev) => (prev - 1 + activity.gallery.length) % activity.gallery.length)
   }
 
   return (
@@ -51,22 +52,22 @@ export default function AccommodationDetail() {
         {/* Back Button */}
         <Button
           variant="ghost"
-          onClick={() => navigate("/accommodation")}
+          onClick={() => navigate("/activities")}
           className="mb-6"
         >
-          Back to Accommodations
+          Back to Activities
         </Button>
 
         {/* Gallery Section */}
         <div className="mb-8">
           <div className="relative w-full h-[500px] overflow-hidden rounded-lg bg-muted mb-4">
             <img
-              src={accommodation.gallery[currentImageIndex]}
-              alt={`${accommodation.title} - Image ${currentImageIndex + 1}`}
+              src={activity.gallery[currentImageIndex]}
+              alt={`${activity.title} - Image ${currentImageIndex + 1}`}
               className="w-full h-full object-cover"
             />
             {/* Gallery Navigation */}
-            {accommodation.gallery.length > 1 && (
+            {activity.gallery.length > 1 && (
               <>
                 <button
                   onClick={prevImage}
@@ -81,7 +82,7 @@ export default function AccommodationDetail() {
                   <ChevronRight className="h-6 w-6" />
                 </button>
                 <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
-                  {currentImageIndex + 1} / {accommodation.gallery.length}
+                  {currentImageIndex + 1} / {activity.gallery.length}
                 </div>
               </>
             )}
@@ -89,7 +90,7 @@ export default function AccommodationDetail() {
 
           {/* Thumbnail Gallery */}
           <div className="flex gap-2 overflow-x-auto pb-2">
-            {accommodation.gallery.map((img, idx) => (
+            {activity.gallery.map((img, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentImageIndex(idx)}
@@ -105,19 +106,19 @@ export default function AccommodationDetail() {
 
         {/* Header Section */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">{accommodation.title}</h1>
+          <h1 className="text-4xl font-bold mb-2">{activity.title}</h1>
           <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-2">
-              <StarRating value={accommodation.rating} />
-              <span className="text-sm text-muted-foreground">({accommodation.rating})</span>
+              <Stars value={activity.rating} />
+              <span className="text-sm text-muted-foreground">({activity.rating})</span>
             </div>
             <div className="flex items-center gap-2 text-lg font-semibold text-primary">
               <DollarSign className="h-5 w-5" />
-              {accommodation.price}/night
+              {activity.price}/person
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="h-5 w-5" />
-              {accommodation.location}
+              {activity.location}
             </div>
           </div>
         </div>
@@ -147,41 +148,52 @@ export default function AccommodationDetail() {
           {activeTab === "overview" && (
             <div className="grid md:grid-cols-3 gap-8">
               <div className="md:col-span-2">
-                <h2 className="text-2xl font-semibold mb-4">Welcome to {accommodation.title}</h2>
+                <h2 className="text-2xl font-semibold mb-4">Welcome to {activity.title}</h2>
                 <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                  {accommodation.description}
+                  {activity.description}
                 </p>
-                <p className="text-foreground leading-relaxed">
-                  {accommodation.about}
-                </p>
-              </div>
-              <div className="bg-card p-6 rounded-lg border border-border h-fit">
-                <div className="mb-6">
-                  <div className="text-3xl font-bold text-primary mb-2">${accommodation.price}</div>
-                  <p className="text-sm text-muted-foreground">per night</p>
+                <div className="grid md:grid-cols-2 gap-4 mt-6">
+                  <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg">
+                    <Clock className="h-6 w-6 text-primary" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Duration</p>
+                      <p className="font-semibold">{activity.duration}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg">
+                    <Zap className="h-6 w-6 text-primary" />
+                    <div>
+                      <p className="text-sm text-muted-foreground">Difficulty</p>
+                      <p className="font-semibold">{activity.difficulty}</p>
+                    </div>
+                  </div>
                 </div>
-                <Button 
-                onClick={() => navigate("/Booking")} 
-                className="w-full mb-4 bg-primary text-primary-foreground">Book Now</Button>
-                <Button variant="outline" className="w-full">Contact Host</Button>
               </div>
+              {/* <div className="bg-card p-6 rounded-lg border border-border h-fit">
+                <div className="mb-6">
+                  <div className="text-3xl font-bold text-primary mb-2">${activity.price}</div>
+                  <p className="text-sm text-muted-foreground">per person</p>
+                </div>
+                <Button className="w-full mb-4 bg-primary text-primary-foreground">Book Now</Button>
+                <Button variant="outline" className="w-full">Contact Us</Button>
+              </div> */}
             </div>
           )}
 
           {/* About Tab */}
           {activeTab === "about" && (
             <div className="max-w-3xl">
-              <h2 className="text-2xl font-semibold mb-4">About This Accommodation</h2>
+              <h2 className="text-2xl font-semibold mb-4">About This Activity</h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                {accommodation.about}
+                {activity.about}
               </p>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="font-semibold mb-2">Why Choose Us?</h3>
+                <h3 className="font-semibold mb-2">Why Choose This Activity?</h3>
                 <ul className="space-y-2 text-sm text-foreground">
-                  <li> <check/>Authentic Ruboni experience</li>
-                  <li> Close to nature and adventure activities</li>
-                  <li> Friendly and knowledgeable staff</li>
-                  <li> Best value for money</li>
+                  <li> Authentic Ruboni experience</li>
+                  <li> Expert guides and safety equipment</li>
+                  <li> Unforgettable memories</li>
+                  <li>Best value for money</li>
                 </ul>
               </div>
             </div>
@@ -190,18 +202,34 @@ export default function AccommodationDetail() {
           {/* Amenities Tab */}
           {activeTab === "amenities" && (
             <div className="max-w-3xl">
-              <h2 className="text-2xl font-semibold mb-6">Amenities & Facilities</h2>
+              <h2 className="text-2xl font-semibold mb-6">What's Included</h2>
               <div className="grid md:grid-cols-2 gap-4">
-                {accommodation.amenities.map((amenity) => (
+                {activity.amenities?.map((amenity) => (
                   <div
                     key={amenity}
                     className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg"
                   >
-                    <div className="text-primary text-xl"><Check/></div>
+                    <div className="text-primary text-xl"><Check /></div>
                     <span className="font-medium">{amenity}</span>
                   </div>
                 ))}
               </div>
+              {activity.highlights && (
+                <>
+                  <h2 className="text-2xl font-semibold mb-6 mt-8">Highlights</h2>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {activity.highlights.map((highlight) => (
+                      <div
+                        key={highlight}
+                        className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg"
+                      >
+                        <div className="text-primary text-xl"><Sparkle /></div>
+                        <span className="font-medium">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           )}
 
@@ -210,10 +238,10 @@ export default function AccommodationDetail() {
             <div className="max-w-3xl">
               <h2 className="text-2xl font-semibold mb-6">Location</h2>
               <div className="mb-6">
-                <p className="text-muted-foreground mb-2">Address:</p>
+                <p className="text-muted-foreground mb-2">Meeting Point:</p>
                 <p className="text-lg font-semibold flex items-center gap-2">
                   <MapPin className="h-5 w-5 text-primary" />
-                  {accommodation.location}
+                  {activity.location}
                 </p>
               </div>
               
@@ -225,7 +253,7 @@ export default function AccommodationDetail() {
                     Interactive map will be displayed here
                   </p>
                   <p className="text-sm text-muted-foreground mt-2">
-                    Coordinates: {accommodation.coordinates.lat}° N, {accommodation.coordinates.lng}° E
+                    Coordinates: {activity.coordinates?.lat || "N/A"}° N, {activity.coordinates?.lng || "N/A"}° E
                   </p>
                 </div>
               </div>
@@ -243,13 +271,12 @@ export default function AccommodationDetail() {
         {/* Bottom CTA */}
         <div className="bg-primary text-primary-foreground rounded-lg p-8 text-center mb-8">
           <h2 className="text-2xl font-bold mb-4">Ready for your Ruboni adventure?</h2>
-          <p className="mb-6">Book {accommodation.title} today and experience unforgettable moments</p>
+          <p className="mb-6">Book {activity.title} today and experience unforgettable moments</p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button 
-          onClick={() => navigate("/Booking")} 
-            variant="outline"
+            <Button
+            onClick={() => navigate("/Booking")} 
             className="bg-white text-primary hover:bg-white/90">Book Now</Button>
-            <Button variant="outline" className="bg-white text-primary hover:bg-white/90">
+            <Button variant="outline" className="border-white text-white hover:bg-white/10">
               Contact Us
             </Button>
           </div>

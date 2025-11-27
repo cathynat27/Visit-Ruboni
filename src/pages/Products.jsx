@@ -55,10 +55,10 @@ function Card({ id, image, title, description, rating, price }) {
         </div>
         <Stars value={rating} />
         <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
-        <div className="mt-auto flex gap-2">
+        <div className="mt-auto flex flex-col gap-2">
           <Button
-            variant="outline"
-            className="flex-1"
+            variant="outline "
+            className="flex-1 bg-primary hover:opacity-90"
             onClick={(e) => {
               e.stopPropagation()
               handleViewDetails()
@@ -67,11 +67,13 @@ function Card({ id, image, title, description, rating, price }) {
             View details
           </Button>
           <Button
-            size="icon"
+          variant="outline"
+            // size="icon"
             className="bg-primary hover:opacity-90"
             onClick={handleAddToCart}
           >
-            <ShoppingCart className="h-4 w-4" />
+            {/* <ShoppingCart className="h-4 w-4" /> */}
+            Add Cart
           </Button>
         </div>
       </div>
@@ -83,8 +85,8 @@ export default function ProductsPage() {
   return (
     <section className="py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="mb-4 text-4xl font-bold">All Products</h1>
-        <p className="mb-8 text-muted-foreground">
+        <h1 className="mb-4 text-4xl text-center font-bold">All Products</h1>
+        <p className="mb-8 text-center text-muted-foreground">
           Discover authentic local products handcrafted by artisans from Ruboni
         </p>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">

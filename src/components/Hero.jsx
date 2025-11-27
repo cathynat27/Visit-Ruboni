@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 
 const slides = [
@@ -20,6 +21,7 @@ const slides = [
 ]
 
 export default function Hero() {
+  const navigate = useNavigate()
   const items = useMemo(() => slides, [])
   const [index, setIndex] = useState(0)
 
@@ -49,8 +51,8 @@ export default function Hero() {
             {items[index].description}
           </p>
           <div className="mt-6">
-            <Button asChild className="bg-primary text-primary-foreground shadow-lg hover:opacity-90">
-              <a href="#accommodation">Book your stay</a>
+            <Button onClick={() => navigate("/booking")} className="bg-primary text-primary-foreground shadow-lg hover:opacity-90">
+              Book Now
             </Button>
           </div>
         </div>

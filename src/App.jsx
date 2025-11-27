@@ -15,6 +15,10 @@ import AccommodationDetail from "@/pages/AccommodationDetail"
 import ProductsPage from "@/pages/Products"
 import ProductDetail from "@/pages/ProductDetail"
 import CartPage from "@/pages/Cart"
+import ActivitiesPage from "@/pages/Activities"
+import ActivityDetail from "@/pages/ActivityDetail"
+import BookingPage from "@/pages/Booking"
+import ContactPage from "@/pages/Contact"
 import { CartProvider } from "@/context/CartContext"
 import { Toaster } from "react-hot-toast"
 
@@ -38,9 +42,11 @@ function App() {
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/products/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<CartPage />} />
-              <Route path="/activities" element={<div>Activities</div>} />
+              <Route path="/activities" element={<ActivitiesPage />} />
+              <Route path="/activities/:id" element={<ActivityDetail />} />
+              <Route path="/booking" element={<BookingPage />} />
+              <Route path="/contact-us" element={<ContactPage />} />
               <Route path="/about" element={<div>About us</div>} />
-              <Route path="/contact" element={<div>Contact</div>} />
               <Route path="/auth/login" element={<Login />} />
               <Route path="/auth/signup" element={<Signup />} />
             </Routes>
