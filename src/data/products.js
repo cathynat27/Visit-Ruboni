@@ -1,7 +1,7 @@
 export const productItems = [
   {
     id: 1,
-    image: "/images/product1.jpg",
+    image: "/images/local.png",
     title: "Ruboni Coffee Blend",
     description: "Premium locally-roasted coffee from Ruboni highlands.",
     rating: 4.9,
@@ -11,7 +11,7 @@ export const productItems = [
   },
   {
     id: 2,
-    image: "/images/product2.jpg",
+    image: "/images/local.png",
     title: "Handcrafted Basket",
     description: "Beautifully woven traditional baskets by local artisans.",
     rating: 4.7,
@@ -21,7 +21,7 @@ export const productItems = [
   },
   {
     id: 3,
-    image: "/images/product3.jpg",
+    image: "/images/local.png",
     title: "Honey Jar",
     description: "Pure, organic honey harvested from Ruboni apiaries.",
     rating: 4.8,
@@ -31,7 +31,7 @@ export const productItems = [
   },
   {
     id: 4,
-    image: "/images/product4.jpg",
+    image: "/images/local.png",
     title: "Beaded Jewelry",
     description: "Colorful traditional beaded accessories.",
     rating: 4.6,
@@ -41,7 +41,7 @@ export const productItems = [
   },
   {
     id: 5,
-    image: "/images/product5.jpg",
+    image: "/images/local.png",
     title: "Herbal Tea Set",
     description: "Selection of traditional medicinal herbs from local gardens.",
     rating: 4.7,
@@ -51,7 +51,7 @@ export const productItems = [
   },
   {
     id: 6,
-    image: "/images/product6.jpg",
+    image: "/images/local.png",
     title: "Wood Carved Figurines",
     description: "Hand-carved wooden sculptures of local wildlife.",
     rating: 4.8,

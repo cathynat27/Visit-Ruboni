@@ -15,7 +15,7 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
 		fontFamily: {
-      sans: ["poppins"], // your new default font
+        poppins: ["Poppins", "sans-serif"], // your new default font
     },
   		colors: {
   			background: 'hsl(var(--background))',

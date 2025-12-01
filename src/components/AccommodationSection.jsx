@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Star, ArrowRight } from "lucide-react"
 import { accommodationItems } from "@/data/accommodations"
+import Swiper from "@/components/Slider.jsx"
 
 const items = accommodationItems
 
@@ -60,7 +61,7 @@ function SeeAllCard() {
       <div className="flex w-72 shrink-0 flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-sm h-full cursor-pointer hover:shadow-md transition-shadow">
         <div className="flex flex-1 flex-col gap-4 p-6 items-center justify-center">
           <div className="text-center">
-            <h3 className="text-lg  font-semibold mb-2">View All Accommodations</h3>
+            <h3 className="text-lg font-semibold mb-2">View All Accommodations</h3>
             <p className="text-sm text-muted-foreground mb-4">
               Explore our complete selection of rooms and suites
             </p>
@@ -80,12 +81,14 @@ export default function AccommodationSection() {
     <section id="accommodation" className="py-5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="mb-6 text-2xl text-center font-semibold">Accommodation</h2>
-        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 py-2">
+        
+        <Swiper>
           {items.map((it) => (
-            <Card key={it.title} {...it} />
+            <Card key={it.id} {...it} />
           ))}
           <SeeAllCard />
-        </div>
+        </Swiper>
+        
       </div>
     </section>
   )

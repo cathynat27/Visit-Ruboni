@@ -27,7 +27,7 @@ function App() {
     <CartProvider>
       <BrowserRouter>
         <Toaster position="top-right" />
-        <div className="min-h-screen flex flex-col bg-background text-foreground">
+        <div className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden">
           <Navbar />
           <main className="container mx-auto flex-1 px-4 py-6 sm:px-6 lg:px-8">
             <Routes>

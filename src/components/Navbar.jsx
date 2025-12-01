@@ -27,7 +27,7 @@ export default function Navbar() {
         {/* Left: Logo and brand */}
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <img
-            src="/logo.svg"
+            src="/images/Ellipse.png"
             alt="Visit Ruboni Logo"
             className="h-8 w-8"
             onError={(e) => {
