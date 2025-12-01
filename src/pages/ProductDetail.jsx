@@ -62,7 +62,7 @@ export default function ProductDetail() {
           onClick={() => navigate("/products")}
           className="mb-6"
         >
-          ← Back to Products
+           Back to Products
         </Button>
 
         {/* Product Details */}

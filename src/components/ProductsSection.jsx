@@ -4,6 +4,7 @@ import { Star, ArrowRight, ShoppingCart } from "lucide-react"
 import { productItems } from "@/data/products"
 import { useCart } from "@/context/useCart"
 import toast from "react-hot-toast"
+import Swiper from "@/components/Slider.jsx"
 
 function Stars({ value }) {
   const full = Math.floor(value)
@@ -70,14 +71,11 @@ function Card({ id, image, title, description, rating, price }) {
          
           
           <Button
-          variant="outline"
-            // className="flex-1"
-            // size="icon"
+            variant="outline"
             className="bg-primary hover:opacity-90 hover:bg-sky-600 text-white" 
             onClick={handleAddToCart}
           >
-        Add Cart
-            {/* <ShoppingCart className="h-4 w-4" /> */}
+            Add Cart
           </Button>
           
         </div>
@@ -115,12 +113,14 @@ export default function ProductsSection() {
         <p className="mb-8 text-center text-muted-foreground max-w-2xl mx-auto">
           Discover authentic local products handcrafted by artisans from Ruboni
         </p>
-        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 py-2">
+        
+        <Swiper>
           {productItems.slice(0, 4).map((product) => (
             <Card key={product.id} {...product} />
           ))}
           <SeeAllCard />
-        </div>
+        </Swiper>
+        
       </div>
     </section>
   )

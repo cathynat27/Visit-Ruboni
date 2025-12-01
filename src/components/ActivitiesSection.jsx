@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Star, ArrowRight, Clock } from "lucide-react"
 import { activityItems } from "@/data/activities"
+import Swiper from "@/components/Slider.jsx"
 
 function Stars({ value }) {
   const full = Math.floor(value)
@@ -20,7 +21,7 @@ function Stars({ value }) {
   )
 }
 
-function Card({ id, image, title, description, rating, price, duration, difficulty }) {
+function Card({ id, image, title, description, rating, price, duration}) {
   const navigate = useNavigate()
 
   const handleViewDetails = () => {
@@ -34,9 +35,6 @@ function Card({ id, image, title, description, rating, price, duration, difficul
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <img src={image} alt={title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
-        <div className="absolute top-3 right-3 bg-black/70 text-white px-3 py-1 rounded-full text-xs font-semibold">
-          {difficulty}
-        </div>
       </div>
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-2">
@@ -93,12 +91,14 @@ export default function ActivitiesSection() {
         <p className="mb-8 text-center text-muted-foreground max-w-2xl mx-auto">
           Experience thrilling adventures and unforgettable experiences in Ruboni
         </p>
-        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 py-2">
+        
+        <Swiper>
           {activityItems.slice(0, 4).map((activity) => (
             <Card key={activity.id} {...activity} />
           ))}
           <SeeAllCard />
-        </div>
+        </Swiper>
+        
       </div>
     </section>
   )
