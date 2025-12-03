@@ -68,11 +68,9 @@ function Card({ id, image, title, description, rating, price }) {
           </Button>
           <Button
           variant="outline"
-            // size="icon"
             className="bg-primary hover:opacity-90"
             onClick={handleAddToCart}
           >
-            {/* <ShoppingCart className="h-4 w-4" /> */}
             Add Cart
           </Button>
         </div>
