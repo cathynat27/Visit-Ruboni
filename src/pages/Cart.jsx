@@ -21,7 +21,7 @@ export default function CartPage() {
   const handleCheckout = () => {
     toast.success('Proceeding to checkout...', { duration: 2 })
     setTimeout(() => {
-      // Navigate to checkout page when it exists
+      // Navigate to checkout page
       // navigate("/checkout")
     }, 500)
   }

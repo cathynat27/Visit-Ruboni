@@ -23,9 +23,9 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Handle form submission here
+    // Handle form submission 
     console.log("Contact form submitted:", formData)
-    // Show success message
+    
     alert("Message sent successfully! We'll get back to you soon.")
     setFormData({
       name: "",

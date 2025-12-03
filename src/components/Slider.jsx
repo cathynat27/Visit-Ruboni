@@ -22,7 +22,7 @@ export default function Swiper({ children }) {
       if (!scrollEl) return
       const { scrollLeft } = scrollEl
       // Calculate which card is currently in view
-      const cardWidth = 288 + 16 // 72*4 (w-72 = 288px) + gap-4 (16px)
+      const cardWidth = 288 + 16 
       const index = Math.round(scrollLeft / cardWidth)
       setCurrentIndex(index)
     }
@@ -55,7 +55,7 @@ export default function Swiper({ children }) {
 
   const scrollToSlide = (index) => {
     if (!scrollRef.current) return
-    const cardWidth = 288 + 16 // w-72 (288px) + gap-4 (16px)
+    const cardWidth = 288 + 16 
     scrollRef.current.scrollTo({
       left: index * cardWidth,
       behavior: "smooth"

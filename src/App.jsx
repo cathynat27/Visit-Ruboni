@@ -21,15 +21,16 @@ import BookingPage from "@/pages/Booking"
 import ContactPage from "@/pages/Contact"
 import { CartProvider } from "@/context/CartContext"
 import { Toaster } from "react-hot-toast"
+import AboutUs from "@/pages/AboutUs"
 
 function App() {
   return (
     <CartProvider>
       <BrowserRouter>
         <Toaster position="top-right" />
-        <div className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden">
+        <div className="min-h-screen flex flex-col bg-background text-foreground">
           <Navbar />
-          <main className="container mx-auto flex-1 px-4 py-6 sm:px-6 lg:px-8">
+          <main className="container mx-auto flex-1 px-4 py-6  sm:px-6 lg:px-8">
             <Routes>
               <Route path="/" element={<>
                 <Hero />
@@ -46,7 +47,7 @@ function App() {
               <Route path="/activities/:id" element={<ActivityDetail />} />
               <Route path="/booking" element={<BookingPage />} />
               <Route path="/contact-us" element={<ContactPage />} />
-              <Route path="/about" element={<div>About us</div>} />
+              <Route path="/about" element={<AboutUs/>} />
               <Route path="/auth/login" element={<Login />} />
               <Route path="/auth/signup" element={<Signup />} />
             </Routes>

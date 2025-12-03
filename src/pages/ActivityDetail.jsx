@@ -268,7 +268,7 @@ export default function ActivityDetail() {
           )}
         </div>
 
-        {/* Bottom CTA */}
+        {/*  CTA Button*/}
         <div className="bg-primary text-primary-foreground rounded-lg p-8 text-center mb-8">
           <h2 className="text-2xl font-bold mb-4">Ready for your Ruboni adventure?</h2>
           <p className="mb-6">Book {activity.title} today and experience unforgettable moments</p>

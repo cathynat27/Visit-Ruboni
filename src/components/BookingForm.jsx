@@ -14,7 +14,7 @@ export default function BookingForm({ title = "Booking", onSubmit }) {
 
   const submit = (values) => {
     if (onSubmit) onSubmit(values)
-    // For now just log. In production integrate API here
+    
     console.log("booking:", values)
   }
 

@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-border ">
       <div className="container mx-auto grid grid-cols-1 gap-8 px-4 py-4 sm:px-6 md:grid-cols-3 lg:px-8 ">
-        {/* Left: Socials */}
+        {/* Socials */}
         <div className="space-y-2">
           <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Follow us</h3>
           <div className="flex gap-4">
@@ -16,7 +16,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Middle: Links */}
+        {/*  Links */}
         <div className="space-y-3">
           <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Links</h3>
           <ul className="space-y-2 text-muted-foreground">
@@ -29,7 +29,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Right: Subscribe */}
+        {/*  Subscribe */}
         <div className="space-y-4">
           <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Subscribe</h3>
           <form
