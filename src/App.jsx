@@ -21,7 +21,7 @@ import BookingPage from "@/pages/Booking"
 import ContactPage from "@/pages/Contact"
 import { CartProvider } from "@/context/CartContext"
 import { Toaster } from "react-hot-toast"
-import AboutUs from "@/pages/AboutUs"
+import AboutUs from "@/pages/Aboutus"
 
 function App() {
   return (
