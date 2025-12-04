@@ -48,7 +48,7 @@ export default function AccommodationDetail() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
-        {/* Back Button */}
+       
         <Button
           variant="ghost"
           onClick={() => navigate("/accommodation")}
@@ -57,7 +57,7 @@ export default function AccommodationDetail() {
           Back to Accommodations
         </Button>
 
-        {/* Gallery Section */}
+        {/* Gallery  */}
         <div className="mb-8">
           <div className="relative w-full h-[500px] overflow-hidden rounded-lg bg-muted mb-4">
             <img
@@ -103,7 +103,7 @@ export default function AccommodationDetail() {
           </div>
         </div>
 
-        {/* Header Section */}
+        {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">{accommodation.title}</h1>
           <div className="flex items-center gap-4 flex-wrap">
@@ -141,9 +141,9 @@ export default function AccommodationDetail() {
           </div>
         </div>
 
-        {/* Tab Content */}
+        {/* Content */}
         <div className="mb-12">
-          {/* Overview Tab */}
+          {/* Overview */}
           {activeTab === "overview" && (
             <div className="grid md:grid-cols-3 gap-8">
               <div className="md:col-span-2">
@@ -168,7 +168,7 @@ export default function AccommodationDetail() {
             </div>
           )}
 
-          {/* About Tab */}
+          {/* About */}
           {activeTab === "about" && (
             <div className="max-w-3xl">
               <h2 className="text-2xl font-semibold mb-4">About This Accommodation</h2>
@@ -187,7 +187,7 @@ export default function AccommodationDetail() {
             </div>
           )}
 
-          {/* Amenities Tab */}
+          {/* Amenities*/}
           {activeTab === "amenities" && (
             <div className="max-w-3xl">
               <h2 className="text-2xl font-semibold mb-6">Amenities & Facilities</h2>
@@ -205,7 +205,7 @@ export default function AccommodationDetail() {
             </div>
           )}
 
-          {/* Location Tab */}
+          {/* Location  */}
           {activeTab === "location" && (
             <div className="max-w-3xl">
               <h2 className="text-2xl font-semibold mb-6">Location</h2>
@@ -217,7 +217,7 @@ export default function AccommodationDetail() {
                 </p>
               </div>
               
-              {/* Map Placeholder */}
+              {/* Map */}
               <div className="w-full h-[400px] bg-gray-200 rounded-lg border border-border flex items-center justify-center">
                 <div className="text-center">
                   <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
@@ -240,7 +240,7 @@ export default function AccommodationDetail() {
           )}
         </div>
 
-        {/* Bottom CTA */}
+        {/*  CTA */}
         <div className="bg-primary text-primary-foreground rounded-lg p-8 text-center mb-8">
           <h2 className="text-2xl font-bold mb-4">Ready for your Ruboni adventure?</h2>
           <p className="mb-6">Book {accommodation.title} today and experience unforgettable moments</p>

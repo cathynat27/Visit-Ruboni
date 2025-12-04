@@ -154,12 +154,12 @@ export default function CartPage() {
               </div>
             </div>
 
-            {/* Checkout Button */}
+           
             <Button className="w-full bg-primary text-primary-foreground py-6 text-lg font-semibold mb-3" onClick={handleCheckout}>
               Proceed to Checkout
             </Button>
 
-            {/* Clear Cart */}
+            
             <Button
               variant="outline"
               className="w-full"

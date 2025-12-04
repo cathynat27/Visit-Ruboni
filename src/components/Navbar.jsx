@@ -66,9 +66,9 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/*  Mobile Menu + Cart + Account */}
+          {/*  Mobile Menu, Cart and Account */}
           <div className="flex items-center gap-3">
-            {/* Mobile Menu Button */}
+           
             <Button
               variant="ghost"
               size="icon"
@@ -120,7 +120,6 @@ export default function Navbar() {
       {/* Mobile Menu Sidebar */}
       {isMobileMenuOpen && (
         <>
-          {/* Overlay */}
           <div 
             className="fixed inset-0 bg-black/50 z-40 md:hidden"
             onClick={closeMobileMenu}

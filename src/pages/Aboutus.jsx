@@ -16,7 +16,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Our Story Section */}
+      {/* Our Story  */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
@@ -49,7 +49,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Our Values */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
@@ -119,7 +119,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* What We Offer Section */}
+      {/* What We Offer  */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
           What We Offer
@@ -157,7 +157,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Impact Section 
+      {/* Impact 
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -184,7 +184,7 @@ export default function AboutUs() {
       </section>
       */}
 
-      {/* Location Section */}
+      {/* Location */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative h-[400px] bg-muted rounded-lg overflow-hidden order-2 md:order-1">
@@ -223,7 +223,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* CTA */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">

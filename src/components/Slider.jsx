@@ -76,7 +76,7 @@ export default function Swiper({ children }) {
         {children}
       </div>
 
-      {/* Dot Navigation */}
+      {/* Dot scrollbar*/}
       {totalSlides > 1 && (
         <div className="flex justify-center mt-4 gap-2">
           {Array.from({ length: totalSlides }).map((_, index) => (
