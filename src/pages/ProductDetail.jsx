@@ -56,7 +56,7 @@ export default function ProductDetail() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
-        {/* Back Button */}
+       
         <Button
           variant="ghost"
           onClick={() => navigate("/products")}
@@ -67,7 +67,6 @@ export default function ProductDetail() {
 
         {/* Product Details */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* Image */}
           <div>
             <div className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-muted mb-4">
               <img
@@ -77,8 +76,6 @@ export default function ProductDetail() {
               />
             </div>
           </div>
-
-          {/* Details */}
           <div>
             <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
             
@@ -103,8 +100,6 @@ export default function ProductDetail() {
                 {product.about}
               </p>
             </div>
-
-            {/* Category */}
             <div className="mb-8">
               <p className="text-sm text-muted-foreground mb-2">Category</p>
               <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold">
@@ -132,7 +127,7 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            {/* Add to Cart Button */}
+            {/* Add to Cart  */}
             <Button
               onClick={handleAddToCart}
               className="w-full bg-primary text-primary-foreground py-6 text-lg font-semibold"

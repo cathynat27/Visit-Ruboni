@@ -39,7 +39,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Back button */}
+     
         <button
           onClick={() => navigate(-1)}
           className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition mb-8"
@@ -49,15 +49,14 @@ export default function Contact() {
         </button>
 
         <div className="grid gap-12 lg:grid-cols-2">
-          {/* Contact Information */}
+          
           <div>
             <h1 className="text-3xl font-bold mb-2">Get In Touch</h1>
             <p className="text-muted-foreground mb-8">
               Have questions about our services? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
             </p>
 
-            <div className="space-y-6">
-              {/* Email */}
+            <div className="space-y-6">              
               <div className="flex gap-4">
                 <div className="flex-shrink-0">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -70,8 +69,6 @@ export default function Contact() {
                   <p className="text-muted-foreground">support@visitruboni.com</p>
                 </div>
               </div>
-
-              {/* Phone */}
               <div className="flex gap-4">
                 <div className="flex-shrink-0">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -84,8 +81,6 @@ export default function Contact() {
                   <p className="text-muted-foreground">+256 (0) 123 456 790</p>
                 </div>
               </div>
-
-              {/* Address */}
               <div className="flex gap-4">
                 <div className="flex-shrink-0">
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -99,8 +94,6 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-
-            {/* Business Hours */}
             <div className="mt-12 rounded-lg border border-border bg-card p-6">
               <h3 className="font-semibold mb-4">Business Hours</h3>
               <div className="space-y-2 text-sm">
