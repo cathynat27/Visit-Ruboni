@@ -5,6 +5,9 @@ import { productItems } from "@/data/products"
 import { useCart } from "@/context/useCart"
 import toast from "react-hot-toast"
 import Swiper from "@/components/Slider.jsx"
+import { useEffect, useState } from "react"
+import { fetchProducts } from "@/api/products"
+
 
 function Stars({ value }) {
   const full = Math.floor(value)
@@ -106,6 +109,19 @@ function SeeAllCard() {
 }
 
 export default function ProductsSection() {
+  const [product, setProduct] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchProducts().then((data) => {
+      setProduct(data)
+      setLoading(false)
+    }).catch((error) => {
+      console.error("Error fetching products:", error)
+      setLoading(false)
+    })
+}, [])
+if (loading) return <p className="text-center">Loading...</p>
   return (
     <section id="products" className="py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -115,9 +131,26 @@ export default function ProductsSection() {
         </p>
         
         <Swiper>
-          {productItems.slice(0, 4).map((product) => (
+          {/* {productItems.slice(0, 4).map((product) => (
             <Card key={product.id} {...product} />
-          ))}
+          ))} */}
+          {product.map((items) =>{
+            const products = items.attributes;
+            return(
+              <Card
+              key={items.id}
+              id={items.id}
+              image={
+                    products?.image?.data?.attributes?.url
+                      ? products.image.data.attributes.url
+                      : "https://placehold.co/600x400?text=No+Image"
+                  }
+                  title = {products.name}
+                  description={products.description?.replace(/<[^>]+>/g, "")}
+                  price ={products.price}
+                  />
+            )
+          })}
           <SeeAllCard />
         </Swiper>
         

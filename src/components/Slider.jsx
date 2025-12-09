@@ -94,7 +94,7 @@ export default function Swiper({ children }) {
         </div>
       )}
 
-      <style jsx>{`
+      {/* <style jsx>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
@@ -102,7 +102,9 @@ export default function Swiper({ children }) {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
-      `}</style>
+      `}</style> */}
+      <style>{`...`}</style>
+
     </div>
   )
 }
