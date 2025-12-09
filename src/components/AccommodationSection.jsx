@@ -1,15 +1,17 @@
-import { Link, useNavigate } from "react-router-dom"
-import { Button } from "@/components/ui/button"
-import { Star, ArrowRight } from "lucide-react"
-import { accommodationItems } from "@/data/accommodations"
-import Swiper from "@/components/Slider.jsx"
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Star, ArrowRight, MapPin } from "lucide-react";
+//import { accommodationItems } from "@/data/accommodations"
+import Swiper from "@/components/Slider.jsx";
+import { useEffect, useState } from "react";
+import { fetchLodges } from "@/api/lodges";
 
-const items = accommodationItems
+//const items = accommodationItems
 
 function Stars({ value }) {
-  const full = Math.floor(value)
-  const half = value - full >= 0.5
-  const empty = 5 - full - (half ? 1 : 0)
+  const full = Math.floor(value);
+  const half = value - full >= 0.5;
+  const empty = 5 - full - (half ? 1 : 0);
   return (
     <div className="flex items-center gap-1 text-yellow-500">
       {Array.from({ length: full }).map((_, i) => (
@@ -20,39 +22,59 @@ function Stars({ value }) {
         <Star key={`empty-${i}`} className="h-4 w-4" />
       ))}
     </div>
-  )
+  );
 }
 
-function Card({ id, image, title, description, rating, price }) {
-  const navigate = useNavigate()
-  
+function Card({ id, image, title, description, location }) {
+  const navigate = useNavigate();
+
   const handleViewDetails = () => {
-    navigate(`/accommodation/${id}`)
-  }
+    navigate(`/accommodation/${id}`);
+  };
 
   return (
-    <div className="group flex w-72 shrink-0 flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={handleViewDetails}>
+    <div
+      className="group flex w-72 shrink-0 flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+      onClick={handleViewDetails}
+    >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
-        <img src={image} alt={title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
       </div>
       <div className="flex flex-1 flex-col gap-3 p-4">
-        <div className="flex items-start justify-between gap-2">
+        <div className="flex flex-col gap-1">
+          {/* Title */}
           <h3 className="text-base font-semibold">{title}</h3>
-          <span className="text-sm font-semibold text-primary">${price}</span>
+
+          {/* Location row */}
+          <div className="flex items-center gap-1">
+            <MapPin className="w-5 h-5 ml-2 text-primary" />
+            <span className="text-sm line-clamp-1 text-gray-600">
+              {location}
+            </span>
+          </div>
         </div>
-        <Stars value={rating} />
-        <p className="text-sm text-muted-foreground">
+
+        <p className="text-sm line-clamp-2 text-muted-foreground">
           {description}
         </p>
         <div className="mt-auto">
-          <Button className="w-full" onClick={(e) => {
-            e.stopPropagation()
-            handleViewDetails()
-          }}>View details</Button>
+          <Button
+            className="w-full"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleViewDetails();
+            }}
+          >
+            View details
+          </Button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function SeeAllCard() {
@@ -61,7 +83,9 @@ function SeeAllCard() {
       <div className="flex w-72 shrink-0 flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-sm h-full cursor-pointer hover:shadow-md transition-shadow">
         <div className="flex flex-1 flex-col gap-4 p-6 items-center justify-center">
           <div className="text-center">
-            <h3 className="text-lg font-semibold mb-2">View All Accommodations</h3>
+            <h3 className="text-lg font-semibold mb-2">
+              View All Accommodations
+            </h3>
             <p className="text-sm text-muted-foreground mb-4">
               Explore our complete selection of rooms and suites
             </p>
@@ -73,23 +97,71 @@ function SeeAllCard() {
         </div>
       </div>
     </Link>
-  )
+  );
 }
 
 export default function AccommodationSection() {
+  const [lodges, setLodges] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchLodges().then((data) => {
+      console.log("Lodges fetched:", data);
+      setLodges(data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) return <p className="text-center">Loading...</p>;
+
   return (
     <section id="accommodation" className="py-5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="mb-6 text-2xl text-center font-semibold">Accommodation</h2>
-        
+        <h2 className="mb-6 text-2xl text-center font-semibold">
+          Accommodation
+        </h2>
+
         <Swiper>
-          {items.map((it) => (
-            <Card key={it.id} {...it} />
-          ))}
+          {lodges.map((item) => {
+            const lodge = item.attributes;
+
+            const mainPhoto = lodge.photo?.data?.attributes?.url
+              ? `https://cms.visitruboni.com${lodge.photo.data.attributes.url}`
+              : "";
+
+            const gallery =
+              lodge.photos?.data?.map(
+                (img) => `https://cms.visitruboni.com${img.attributes.url}`
+              ) || [];
+
+            // const mainPhoto = lodge.photo?.data?.attributes?.url || "";
+            // const gallery =
+            //   lodge.photos?.data?.map((img) => img.attributes.url) || [];
+            const rooms = lodge.Rooms || [];
+
+            return (
+              <Card
+                key={item.id}
+                id={item.id}
+                title={lodge.name}
+                description={lodge.services}
+                rating={lodge.rating || 4}
+                location={lodge.location}
+                // price: the lodge itself has no price — use first room price
+                price={rooms[0]?.price || "N/A"}
+                // images
+                image={mainPhoto} // cover image
+                mainPhoto={mainPhoto} // pass main image separately
+                galleryPhotos={gallery} // pass gallery images
+                // pass rooms array
+                rooms={rooms}
+              />
+            );
+          })}
+
           <SeeAllCard />
         </Swiper>
-        
       </div>
     </section>
-  )
+  );
 }

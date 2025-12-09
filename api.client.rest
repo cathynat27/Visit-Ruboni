@@ -1,0 +1,9 @@
+//GET https://cms.visitruboni.com/api/lodges
+
+//POST https://cms.visitruboni.com/api/bookings
+
+//GET https://cms.visitruboni.com/api/safaris
+
+//GET https://cms.visitruboni.com/api/products
+
+GET https://cms.visitruboni.com/api/bookings

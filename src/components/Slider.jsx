@@ -76,7 +76,7 @@ export default function Swiper({ children }) {
         {children}
       </div>
 
-      {/* Dot Navigation */}
+      {/* Dot scrollbar*/}
       {totalSlides > 1 && (
         <div className="flex justify-center mt-4 gap-2">
           {Array.from({ length: totalSlides }).map((_, index) => (
@@ -94,7 +94,7 @@ export default function Swiper({ children }) {
         </div>
       )}
 
-      <style jsx>{`
+      {/* <style jsx>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
@@ -102,7 +102,9 @@ export default function Swiper({ children }) {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
-      `}</style>
+      `}</style> */}
+      <style>{`...`}</style>
+
     </div>
   )
 }

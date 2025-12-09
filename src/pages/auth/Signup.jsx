@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
+import { registerUser } from "@/api/auth"
+import { useNavigate } from "react-router-dom"
 
 const signupSchema = z
   .object({
@@ -24,11 +26,26 @@ export default function Signup() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(signupSchema) })
+  //api
+  const navigate = useNavigate();
 
-  function onSubmit(values) {
+  async function onSubmit(values) {
+    const res = await registerUser(values);
+    if(res.error){
+      alert(res.error.message);
+      return;
+    }
+
+     // Save user + token
+    localStorage.setItem("user", JSON.stringify(res.user));
+    localStorage.setItem("token", res.jwt);
+
+     alert("Account created successfully!");
+    navigate("/");
+
     // Replace with your signup flow
     console.log("Signup submit", values)
-    alert("Account created (demo)")
+    //alert("Account created (demo)")
   }
 
   return (
@@ -73,13 +90,7 @@ export default function Signup() {
               placeholder="+265"
               {...register("phoneNumber")}
             />
-            {errors.phoneNumber && (  
-              
-
-
-
-
-
+            {errors.phoneNumber && (        
               <p className="text-xs text-destructive">{errors.phoneNumber.message}</p>
             )}
           </div>
