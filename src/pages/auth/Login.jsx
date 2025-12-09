@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
+import {loginUser} from "@/api/auth"
+import { useNavigate } from "react-router-dom"
 
 const loginSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -15,11 +17,25 @@ export default function Login() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(loginSchema) })
+  const navigate = useNavigate();
 
-  function onSubmit(values) {
+  async function onSubmit(values) {
+    const res = await loginUser(values);
+
+    if(res.errors){
+      alert(res.error.message);
+      return;
+    }
+     // Save user + token
+    localStorage.setItem("user", JSON.stringify(res.user));
+    localStorage.setItem("token", res.jwt);
+
+     alert("Logged in successfully!");
+    navigate("/");
+
     // Replace with your auth flow
-    console.log("Login submit", values)
-    alert("Logged in (demo)")
+    //console.log("Login submit", values)
+    //alert("Logged in (demo)")
   }
 
   return (
