@@ -1,9 +1,12 @@
 import { Star, ShoppingCart } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
-import { productItems } from "@/data/products"
+
 import { useCart } from "@/context/useCart"
 import toast from "react-hot-toast"
+import { useEffect, useState } from "react"
+import {fetchProducts} from "@/api/products"
+
 
 function Stars({ value }) {
   const full = Math.floor(value)
@@ -25,6 +28,7 @@ function Stars({ value }) {
 function Card({ id, image, title, description, rating, price }) {
   const navigate = useNavigate()
   const { addToCart } = useCart()
+const [products] = useState([])
 
   const handleViewDetails = () => {
     navigate(`/products/${id}`)
@@ -32,7 +36,7 @@ function Card({ id, image, title, description, rating, price }) {
 
   const handleAddToCart = (e) => {
     e.stopPropagation()
-    const product = productItems.find((p) => p.id === id)
+    const product = products.find((p) => p.id === id)
     addToCart(product)
     toast.success(`${product.title} added to cart!`, {
       duration: 3,
@@ -46,7 +50,11 @@ function Card({ id, image, title, description, rating, price }) {
       onClick={handleViewDetails}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
-        <img src={image} alt={title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        <img 
+        src="/images/local.png"
+        //src={image}
+         alt={title} 
+         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
       </div>
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-2">
@@ -80,6 +88,33 @@ function Card({ id, image, title, description, rating, price }) {
 }
 
 export default function ProductsPage() {
+  
+  const [loading,setLoading] = useState(true)
+const [products, setProducts] = useState([])
+  useEffect(() => {
+    fetchProducts().then((data) => {
+      setProducts(data)
+      setLoading(false)
+    });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p>Loading products...</p>
+      </div>
+    )
+  }
+  if(!products|| products.length ===0){
+    return (
+ 
+      <section className="py-12 min-h-screen bg-background">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-lg">No activities available.</p>
+        </div>
+      </section>
+    );
+  }        
   return (
     <section className="py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -88,9 +123,25 @@ export default function ProductsPage() {
           Discover authentic local products handcrafted by artisans from Ruboni
         </p>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {productItems.map((product) => (
+          {/* {productItems.map((product) => (
             <Card key={product.id} {...product} />
-          ))}
+          ))} */}
+          {products.map((item) =>{
+            const attrs = item.attributes;
+            return(
+              <Card
+              key = {item.id}
+              id = {item.id}
+              image={
+                  attrs?.image?.data?.attributes?.url ||
+                  "https://placehold.co/600x400?text=No+Image"
+                }
+                title = {attrs.name}
+                description = {attrs.description}
+                price ={attrs.price}
+              />
+            );             
+          })}
         </div>
       </div>
     </section>

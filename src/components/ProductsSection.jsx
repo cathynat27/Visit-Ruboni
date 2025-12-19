@@ -5,6 +5,9 @@ import { productItems } from "@/data/products"
 import { useCart } from "@/context/useCart"
 import toast from "react-hot-toast"
 import Swiper from "@/components/Slider.jsx"
+import { useEffect, useState } from "react"
+import { fetchProducts } from "@/api/products"
+
 
 function Stars({ value }) {
   const full = Math.floor(value)
@@ -47,12 +50,16 @@ function Card({ id, image, title, description, rating, price }) {
       onClick={handleViewDetails}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
-        <img src={image} alt={title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        <img 
+        src = "/images/local.png"
+        //src={image} 
+        alt={title} 
+        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
       </div>
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-2">
           <h3 className="text-base font-semibold">{title}</h3>
-          <span className="text-sm font-semibold text-primary">${price}</span>
+          {/* <span className="text-sm font-semibold text-primary">${price}</span> */}
         </div>
         <Stars value={rating} />
         <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
@@ -106,6 +113,19 @@ function SeeAllCard() {
 }
 
 export default function ProductsSection() {
+  const [product, setProduct] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchProducts().then((data) => {
+      setProduct(data)
+      setLoading(false)
+    }).catch((error) => {
+      console.error("Error fetching products:", error)
+      setLoading(false)
+    })
+}, [])
+if (loading) return <p className="text-center">Loading...</p>
   return (
     <section id="products" className="py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -115,9 +135,26 @@ export default function ProductsSection() {
         </p>
         
         <Swiper>
-          {productItems.slice(0, 4).map((product) => (
+          {/* {productItems.slice(0, 4).map((product) => (
             <Card key={product.id} {...product} />
-          ))}
+          ))} */}
+          {product.map((items) =>{
+            const products = items.attributes;
+            return(
+              <Card
+              key={items.id}
+              id={items.id}
+              image={
+                    products?.image?.data?.attributes?.url
+                      ? products.image.data.attributes.url
+                      : "https://placehold.co/600x400?text=No+Image"
+                  }
+                  title = {products.name}
+                  description={products.description?.replace(/<[^>]+>/g, "")}
+                  price ={products.price}
+                  />
+            )
+          })}
           <SeeAllCard />
         </Swiper>
         
