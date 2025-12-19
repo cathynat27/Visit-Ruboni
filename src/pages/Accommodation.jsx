@@ -37,7 +37,8 @@ function Card({ id, image, title, description, location }) {
       {/* Image */}
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <img
-          src={image}
+        src="/images/house.png"
+          //src={image}
           alt={title}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
@@ -118,6 +119,7 @@ export default function AccommodationPage() {
                 description={lodge.services}
                 location={lodge.location}
                 image={mainPhoto}
+                
               />
             );
           })}

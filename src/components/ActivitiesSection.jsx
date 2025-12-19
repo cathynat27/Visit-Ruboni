@@ -22,7 +22,7 @@ function Stars({ value }) {
   )
 }
 
-function Card({ id, image, title, description, rating, unit,price, duration }) {
+function Card({ id, image, title, description, rating, unit, duration }) {
   const navigate = useNavigate()
 
   const handleViewDetails = () => {
@@ -36,7 +36,8 @@ function Card({ id, image, title, description, rating, unit,price, duration }) {
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <img
-          src={image}
+        src = "/images/hiking.png"
+          //src={image}
           alt={title}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
@@ -45,9 +46,9 @@ function Card({ id, image, title, description, rating, unit,price, duration }) {
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-2">
           <h3 className="text-base font-semibold">{title}</h3>
-          <span className="text-sm font-semibold text-primary">
+          {/* <span className="text-sm font-semibold text-primary">
             UGX {price?.toLocaleString()}
-          </span>
+          </span> */}
         </div>
 
         <Stars value={rating} />
@@ -114,8 +115,7 @@ export default function ActivitiesSection() {
     fetchSafaris().then((data) => {
       console.log("Safaris response:", data)
 
-      // Strapi format: res.data.data
-     // setSafari(res?.data?.data || [])
+    
       setSafari(data);
       setLoading(false)
     })
@@ -144,7 +144,6 @@ export default function ActivitiesSection() {
                 <Card
                   key={item.id}
                   id={item.id}
-                  // Use real image if exists
                   image={
                     safariData?.image?.data?.attributes?.url
                       ? safariData.image.data.attributes.url

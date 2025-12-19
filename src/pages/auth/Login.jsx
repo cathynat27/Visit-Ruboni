@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
 import {loginUser} from "@/api/auth"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "@/context/useAuth"
 
 const loginSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -18,6 +19,7 @@ export default function Login() {
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(loginSchema) })
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   async function onSubmit(values) {
     const res = await loginUser(values);
@@ -26,9 +28,8 @@ export default function Login() {
       alert(res.error.message);
       return;
     }
-     // Save user + token
-    localStorage.setItem("user", JSON.stringify(res.user));
-    localStorage.setItem("token", res.jwt);
+     // Save user + token using auth context
+    login(res.user, res.jwt);
 
      alert("Logged in successfully!");
     navigate("/");
@@ -59,7 +60,12 @@ export default function Login() {
           )}
         </div>
         <div className="space-y-2">
-          <label htmlFor="password" className="text-sm font-medium">Password</label>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="text-sm font-medium">Password</label>
+            <Link to="/auth/forgot-password" className="text-xs text-primary hover:underline">
+              Forgot password?
+            </Link>
+          </div>
           <input
             id="password"
             type="password"

@@ -50,12 +50,16 @@ function Card({ id, image, title, description, rating, price }) {
       onClick={handleViewDetails}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
-        <img src={image} alt={title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        <img 
+        src = "/images/local.png"
+        //src={image} 
+        alt={title} 
+        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
       </div>
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-2">
           <h3 className="text-base font-semibold">{title}</h3>
-          <span className="text-sm font-semibold text-primary">${price}</span>
+          {/* <span className="text-sm font-semibold text-primary">${price}</span> */}
         </div>
         <Stars value={rating} />
         <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>

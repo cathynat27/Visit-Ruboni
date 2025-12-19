@@ -79,7 +79,8 @@ export default function AccommodationDetail() {
         <div className="mb-8">
           <div className="relative w-full h-[500px] overflow-hidden rounded-lg bg-muted mb-4">
             <img
-              src={images[currentImageIndex]}
+            src="/images/house.png"
+             // src={images[currentImageIndex]}
               alt={`${info.name} - Image ${currentImageIndex + 1}`}
               className="w-full h-full object-cover"
             />

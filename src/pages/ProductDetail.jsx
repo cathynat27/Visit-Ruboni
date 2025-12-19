@@ -50,10 +50,10 @@ export default function ProductDetail() {
     )
   }
 
-  // Extract attributes from the API response
+  // Extracting attributes 
   const attrs = product.attributes || product
 
-  // Format price based on currency
+  // price formatig
   const formatPrice = (price, currency) => {
     if (!price) return 'N/A'
     if (currency === 'ugx') {
@@ -62,16 +62,16 @@ export default function ProductDetail() {
     return `UGX ${price}`
   }
 
-  // Get product image
+  //  product image
   const productImage = attrs.image?.data?.attributes?.url || "https://placehold.co/600x400?text=No+Image"
 
   const handleAddToCart = () => {
-    // Create a cart item with the product data
     const cartItem = {
       id: product.id,
       title: attrs.name,
       price: attrs.price,
-      image: productImage,
+      //image: productImage,
+        
       currency: attrs.currency
     }
 
@@ -105,7 +105,8 @@ export default function ProductDetail() {
           <div>
             <div className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-muted mb-4">
               <img
-                src={productImage}
+              src="/images/local.png"
+                //src={productImage}
                 alt={attrs.name}
                 className="w-full h-full object-cover"
               />

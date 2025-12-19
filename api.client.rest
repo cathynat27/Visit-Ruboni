@@ -6,4 +6,5 @@
 
 //GET https://cms.visitruboni.com/api/products
 
-GET https://cms.visitruboni.com/api/bookings
+//GET https://cms.visitruboni.com/api/bookings
+POST https://cms.visitruboni.com/api/auth/change-password

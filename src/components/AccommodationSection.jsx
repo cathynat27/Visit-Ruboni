@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Star, ArrowRight, MapPin } from "lucide-react";
-//import { accommodationItems } from "@/data/accommodations"
+
 import Swiper from "@/components/Slider.jsx";
 import { useEffect, useState } from "react";
 import { fetchLodges } from "@/api/lodges";
 
-//const items = accommodationItems
+
 
 function Stars({ value }) {
   const full = Math.floor(value);
@@ -39,7 +39,8 @@ function Card({ id, image, title, description, location }) {
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <img
-          src={image}
+        src="/images/house.png"
+          //src={image}
           alt={title}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
@@ -134,9 +135,7 @@ export default function AccommodationSection() {
                 (img) => `https://cms.visitruboni.com${img.attributes.url}`
               ) || [];
 
-            // const mainPhoto = lodge.photo?.data?.attributes?.url || "";
-            // const gallery =
-            //   lodge.photos?.data?.map((img) => img.attributes.url) || [];
+            
             const rooms = lodge.Rooms || [];
 
             return (
@@ -147,13 +146,13 @@ export default function AccommodationSection() {
                 description={lodge.services}
                 rating={lodge.rating || 4}
                 location={lodge.location}
-                // price: the lodge itself has no price — use first room price
+                
                 price={rooms[0]?.price || "N/A"}
-                // images
-                image={mainPhoto} // cover image
-                mainPhoto={mainPhoto} // pass main image separately
-                galleryPhotos={gallery} // pass gallery images
-                // pass rooms array
+                
+                image={mainPhoto} 
+                mainPhoto={mainPhoto}
+                galleryPhotos={gallery} 
+                
                 rooms={rooms}
               />
             );

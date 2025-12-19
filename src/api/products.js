@@ -4,7 +4,7 @@ export async function fetchProducts() {
   const res = await fetch(`${BASE_URL}/products?populate=*`);
   if (!res.ok) throw new Error("Failed to fetch products");
   const data = await res.json();
-  return data.data; // Strapi returns objects inside `data`
+  return data.data;
 }
 export async function fetchProductById(id) {
   const res = await fetch(`${BASE_URL}/products/${id}?populate=*`);

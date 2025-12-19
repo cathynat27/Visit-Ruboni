@@ -88,6 +88,7 @@ export default function ActivityDetail() {
         <div className="mb-8">
           <div className="relative w-full h-[500px] overflow-hidden rounded-lg bg-muted mb-4">
             <img
+            src="/images/hiking.png"
               src={gallery[currentImageIndex]}
               alt={`${attrs.safariName} - Image ${currentImageIndex + 1}`}
               className="w-full h-full object-cover"

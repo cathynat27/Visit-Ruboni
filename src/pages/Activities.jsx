@@ -56,7 +56,8 @@ function ActivityCard({ id, image, name, overview, unit, rating, duration,  pric
       {/* Image */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-200">
         <img
-          src={image}
+        src="/images/hiking.png"
+          //src={image}
           alt={name}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
